@@ -6,18 +6,18 @@
 */
 int print_str(va_list args)
 {
-	int count = 0;
 	char *s;
+	int len = 0;
 
 	s = va_arg(args, char*);
 	if (s == NULL)
 	{
 		s = "(null)";
 	}
-	while (*s)
+	while (s[len] != '\0')
 	{
-		count += write(1, s, 1);
-		s++;
+		write(STDOUT_FILENO, &s[len], 1);
+		len++;
 	}
-	return (count);
+	return (len);
 }

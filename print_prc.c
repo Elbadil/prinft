@@ -6,9 +6,6 @@
 */
 int print_cent(va_list args)
 {
-	int count;
-
 	(void)args;
-	count = write(1, "%", 1);
-	return (count);
+	return (write(STDOUT_FILENO, "%", 1));
 }

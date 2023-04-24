@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stddef.h>
+#include <wchar.h>
+#include <locale.h>
 /**
  * struct func - Struct func
  *

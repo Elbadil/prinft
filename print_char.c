@@ -6,14 +6,8 @@
 */
 int print_char(va_list args)
 {
-	int count;
 	char c;
 
 	c = va_arg(args, int);
-	if (c)
-	{
-		count = write(1, &c, 1);
-		return (count);
-	}
-	return (0);
+	return (write(STDOUT_FILENO, &c, 1));
 }
