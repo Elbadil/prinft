@@ -25,9 +25,7 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			f = check_format(&format[i + 1]);
-			if (f == NULL)
-				return (-1);
-			else if (f != NULL)
+			if (f != NULL)
 			{
 				value = f(args);
 				count += value;
