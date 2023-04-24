@@ -25,4 +25,5 @@ int (*check_format(const char *format))(va_list);
 int print_char(va_list args);
 int print_str(va_list args);
 int print_cent(va_list args);
+int print_integer(va_list args);
 #endif
