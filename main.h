@@ -6,8 +6,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stddef.h>
-#include <wchar.h>
-#include <locale.h>
 /**
  * struct func - Struct func
  *
@@ -22,8 +20,11 @@ typedef struct func
 
 int _printf(const char *format, ...);
 int (*check_format(const char *format))(va_list);
+int _isdigit(int c);
+int _puts(char *str);
+int _putchar(char c);
 int print_char(va_list args);
 int print_str(va_list args);
-int print_cent(va_list args);
+int print_prc(va_list args);
 int print_integer(va_list args);
 #endif

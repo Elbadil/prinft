@@ -1,25 +1,25 @@
 #include "main.h"
 /**
  * check_format - to check format of a character
- * @format: format parameter
- * Return: pointer to a function
+ * @format: format of the argument
+ * Return: pointer to a appropriate function or NULL if no match is found
  */
 int (*check_format(const char *format))(va_list)
 {
 	int i;
 
-	func_t array[5] = {
+	func_t types[] = {
 		{"c", print_char},
 		{"s", print_str},
-		{"%", print_cent},
+		{"%", print_prc},
 		{NULL, NULL}
 	};
 
-	for (i = 0; array[i].p != NULL; i++)
+	for (i = 0; types[i].p != NULL; i++)
 	{
-		if (*(array[i].p) == *format)
+		if (*(types[i].p) == *format)
 		{
-			return (array[i].f);
+			return (types[i].f);
 		}
 	}
 	return (NULL);

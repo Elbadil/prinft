@@ -1,47 +1,45 @@
 #include "main.h"
 /**
- * print_str - print a string to stdout
- * @args: variadic parameter
- * Return: number of charater printed
-*/
-int print_str(va_list args)
-{
-	char *s;
-	int len = 0;
-
-	s = va_arg(args, char*);
-	if (s == NULL)
-	{
-		s = "(null)";
-	}
-	while (s[len] != '\0')
-	{
-		write(STDOUT_FILENO, &s[len], 1);
-		len++;
-	}
-	return (len);
-}
-
-/**
- * print_char - print a character to stdout
- * @args: variadic parameter
- * Return: number of charater printed
-*/
+ * print_char - prints a character to stdout
+ * @args: list that contains the character to be printed
+ * Return: count of characters printed.
+ */
 int print_char(va_list args)
 {
-	char c;
-
-	c = va_arg(args, int);
-	return (write(STDOUT_FILENO, &c, 1));
+	_putchar(va_arg(args, int));
+	return (1);
 }
 
 /**
- * print_cent - print a character % to stdout
- * @args: variadic parameter
- * Return: number of charater printed
-*/
-int print_cent(va_list args)
+ * print_str - prints a string to stdout
+ * @args: list that contains the string to be printed
+ * Return: count of characters printed.
+ */
+
+int print_str(va_list args)
+{
+	int i = 0;
+	char *str;
+
+	str = va_arg(args, char *);
+	if (str == NULL)
+		str = "(null)";
+
+	for (; str[i]; i++)
+		_putchar(str[i]);
+
+	return (i);
+}
+
+/**
+ * print_prc - prints a percent sign.
+ * @args: listof args (not used)
+ * Return: count of characters printed.
+ */
+
+int print_prc(va_list args)
 {
 	(void)args;
-	return (write(STDOUT_FILENO, "%", 1));
+	_putchar('%');
+	return (1);
 }

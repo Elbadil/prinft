@@ -1,44 +1,49 @@
 #include "main.h"
 /**
- * _printf - to print all format
- * @format: format parameter
- * Return: characters printed
+ * _printf - print characters to stdout like to printf.
+ * @format: the format of the characters printed
+ * Return: the number of characters printed to the stdout
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, count = 0, value = 0, (*f)(va_list);
 	va_list args;
+	int (*f)(va_list);
+	int i = 0, j = 0, printed_chars = 0;
+	int width = 0;
 
+	if (format == NULL)
+		return (-1);
 	va_start(args, format);
-	if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
-	while (format[i] != '\0')
+	while (format && format[i])
 	{
-		if (format[i] != '%')
-		{
-			value = write(STDOUT_FILENO, &format[i], 1);
-			count += value;
-			i++;
-			continue;
-		}
 		if (format[i] == '%')
 		{
-			f = check_format(&format[i + 1]);
-			if (f == NULL)
-				return (-1);
-			if (f != NULL)
+			if (_isdigit(format[i + 1]))
 			{
-				value = f(args);
-				count += value;
-				i = i + 2;
-				continue;
+				width = format[i + 1] - '0';
+				for (j = i + 2; _isdigit(format[j]); j++)
+					width = width * 10 + (format[j] - '0');
+				i = j - 1;
 			}
 			if (format[i + 1] == '\0')
-				break;
+				return (-1);
+
+			for (; format[i + 1] == ' '; i++)
+			{
+				if (format[i + 2] == '\0')
+				{
+					return (-1);
+				}
+			}
+			f = check_format(&format[++i]);
+			printed_chars += f ? f(args) : _putchar('%') + _putchar(format[i]);
 		}
+		else
+		{
+			printed_chars += _putchar(format[i]);
+		}
+		i++;
 	}
 	va_end(args);
-	return (count);
+	return (printed_chars);
 }
