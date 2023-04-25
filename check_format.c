@@ -12,6 +12,8 @@ int (*check_format(const char *format))(va_list)
 		{"c", print_char},
 		{"s", print_str},
 		{"%", print_prc},
+		{"d", print_int},
+		{"i", print_int},
 		{NULL, NULL}
 	};
 
